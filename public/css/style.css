@@ -1,0 +1,1711 @@
+/* ===================================================================
+   The Daily Dairy — Premium Extended Theme
+   Dark Header | Light Interface | Rich Animations
+   Author: Perplexity AI | Aug 2025
+   =================================================================== */
+
+/* -----------------------------------------------------
+   1. GOOGLE FONT & VARIABLE DEFINITIONS
+------------------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  /* Brand Palette */
+  --primary: #667eea;
+  --primary-hover: #5a67d8;
+  --secondary: #764ba2;
+  --secondary-hover: #6b3fa0;
+  
+  /* Support colours */
+  --success: #10B981;
+  --error: #EF4444;
+  --warning: #F59E0B;
+
+  /* Theme backgrounds */
+  --dark-bg: #1f2937;
+  --light-bg: #f9fafb;
+  --card-bg: #ffffff;
+
+  /* Text */
+  --text-main: #111827;
+  --text-sub: #6b7280;
+  --text-light: #f9fafb;
+
+  /* Borders */
+  --border-color: #E5E7EB;
+
+  /* Radius & Shadows */
+  --radius: 14px;
+  --radius-lg: 20px;
+  --shadow: 0 4px 18px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 28px rgba(0,0,0,0.12);
+
+  /* Anim & Transitions */
+  --transition: 0.3s ease;
+  --fast: 0.18s ease-in-out;
+  --slow: 0.5s ease;
+
+  /* Z-Index */
+  --z-nav: 1000;
+}
+
+/* -----------------------------------------------------
+   2. RESET & BASE TYPOGRAPHY
+------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--light-bg);
+  color: var(--text-main);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+h1,h2,h3,h4,h5 { font-weight: 700; margin-bottom: 0.6em; }
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--primary-hover); }
+img { max-width: 100%; display: block; }
+
+/* Utility spacing helpers */
+.mt-1 { margin-top: .25rem; }
+.mt-2 { margin-top: .5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-1 { margin-bottom: .25rem; }
+.mb-2 { margin-bottom: .5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+/* -----------------------------------------------------
+   3. NAVBAR - Dark Gradient
+------------------------------------------------------ */
+.navbar {
+  background: linear-gradient(90deg, var(--primary), var(--secondary)) !important;
+  color: var(--text-light);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+}
+.navbar .navbar-brand {
+  color: var(--text-light) !important;
+  font-weight: 700;
+  font-size: 1.8rem;
+  transition: color var(--transition), text-shadow var(--transition);
+}
+.navbar .navbar-brand:hover {
+  color: var(--warning) !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.navbar .nav-link {
+  color: var(--text-light) !important;
+  font-weight: 500;
+  padding: 0.5em 1em;
+  border-radius: var(--radius);
+  transition: background var(--fast), color var(--fast);
+  position: relative;
+}
+.navbar .nav-link::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 50%;
+  bottom: 4px;
+  background: var(--warning);
+  transition: width var(--transition), left var(--transition);
+}
+.navbar .nav-link:hover::after {
+  width: 80%;
+  left: 10%;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  background: rgba(255,255,255,0.12);
+  color: var(--warning) !important;
+}
+.navbar-search input {
+  background: rgba(255,255,255,0.15);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.4em 0.8em;
+}
+.navbar-search input::placeholder { color: rgba(255,255,255,0.8); }
+.navbar-search button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: background var(--transition), transform var(--transition);
+}
+.navbar-search button:hover {
+  background: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+/* -----------------------------------------------------
+   4. HERO SECTION
+------------------------------------------------------ */
+#hero {
+  background: linear-gradient(120deg, var(--primary), var(--secondary));
+  color: var(--text-light);
+  padding: 4rem 1rem;
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+#hero img {
+  max-width: 140px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1rem;
+  animation: floatAnim 3s ease-in-out infinite;
+}
+#hero h1 { font-size: 2.4rem; margin-bottom: .5rem; }
+#hero .lead {
+  color: #dbeafe;
+  margin-bottom: 1.2rem;
+}
+#hero .btn-lg {
+  background: var(--warning);
+  border: none;
+  color: var(--dark-bg);
+  padding: 0.8em 1.6em;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  transition: background var(--transition), transform var(--transition);
+}
+#hero .btn-lg:hover {
+  background: #d97706;
+  transform: scale(1.05);
+}
+/* -----------------------------------------------------
+   5. CARDS - Blog & Category
+------------------------------------------------------ */
+/*************************************
+     BLOGS PAGE - PROFESSIONAL THEME
+*************************************/
+
+/* Background and layout */
+
+.blogs-body {
+  background: #f4f6f9; /* light neutral background */
+}
+
+.blogs-page {
+  max-width: 1280px;
+  padding-bottom: 3rem;
+}
+
+/* =====================
+   Section Titles
+   ===================== */
+.blogs-page .section-title {
+  font-weight: 800;
+  font-size: 1.85rem;
+  margin-bottom: 1.8rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.blogs-page .section-title .title-text {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: padding-box; /* standard property */
+  -webkit-text-fill-color: transparent;
+  animation: titleGradient 5s ease infinite;
+  display: inline-block;
+}
+
+.blogs-page .section-title::after {
+  content: "";
+  flex-grow: 1;
+  height: 3px;
+  background: var(--warning);
+  margin-left: 12px;
+  border-radius: 2px;
+}
+
+@keyframes titleGradient {
+  0%   { background-position: 0% center; }
+  50%  { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+/* =====================
+   Cards
+   ===================== */
+.blog-detail-body {
+  background: linear-gradient(135deg, #a8d0ff 0%, #d4e7ff 100%);
+  font-family: 'Poppins', sans-serif;
+}
+
+.blog-detail-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.top-back-btn .btn {
+  border-radius: 8px;
+}
+
+.blog-cover-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+}
+
+.blog-cover-img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.blog-cover-wrapper:hover .blog-cover-img {
+  transform: scale(1.05);
+}
+.blog-article {
+  white-space: pre-wrap; /* preserve line breaks and spaces */
+}
+
+.like-btn {
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: bold;
+  background: #64a1ff;
+  color: #fff;
+  border: none;
+}
+.like-btn.liked { background: #1b71d5; }
+
+.blog-meta-overlay {
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px;
+  padding: .5rem .9rem;
+  font-size: 0.9rem;
+}
+
+.blog-content-block {
+  background: #f5f8ff;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.blog-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a237e;
+}
+
+.blog-article {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.content-comments-separator {
+  border: none;
+  border-top: 3px solid #3949ab;
+  width: 70px;
+  margin: 2rem auto;
+}
+
+.comments-section {
+  max-width: 800px;
+  margin: auto;
+}
+
+.comment-card {
+  background: #e3ecff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: relative;
+  padding-bottom: 2.8rem;
+}
+.comment-text { margin-bottom: 0; }
+
+.comment-upvote-form {
+  position: absolute;
+  left: 1rem;
+  bottom: .6rem;
+}
+.comment-upvote-form button {
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.delete-comment {
+  position: absolute;
+  right: 1rem;
+  bottom: .6rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 18px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .blog-cover-img { height: 360px; }
+}
+
+
+/* =====================
+   Animations
+   ===================== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .blogs-page .section-title {
+    font-size: 1.4rem;
+  }
+  .blogs-page .card-img-top {
+    height: 180px !important;
+  }
+}
+
+/* -----------------------------------------------------
+   6. BLOG DETAIL CONTENT
+------------------------------------------------------ */
+.blog-detail-header {
+  margin-bottom: 1.5rem;
+}
+.blog-detail-header img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.blog-detail-content {
+  animation: fadeInUp 0.7s ease;
+}
+.blog-detail-content h2,
+.blog-detail-content h3 {
+  margin-top: 1.4rem;
+  color: var(--primary);
+}
+.blog-detail-content p {
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+.blog-detail-meta {
+  font-size: 0.92rem;
+  color: var(--text-sub);
+  margin-bottom: 1.2rem;
+}
+
+/* -----------------------------------------------------
+   7. FORMS (Auth, Create/Edit Blog)
+------------------------------------------------------ */
+.form-container {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  animation: fadeInUp 0.6s ease;
+}
+.form-container h3 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+.form-control,
+.form-select {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  padding: 0.6rem 0.8rem;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.25);
+  outline: none;
+}
+textarea.form-control {
+  resize: vertical;
+}
+/* ========== Social Icon Buttons Row ========== */
+.social-icon-row {
+  margin-bottom: 1.2rem;
+  gap: 34px; /* Increased space between icons */
+}
+
+/* Social circle button base */
+.icon-circle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;   /* slightly bigger circles */
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+}
+.icon-circle-btn img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.06));
+}
+
+/* Hover lift and glow */
+.icon-circle-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* Brand styles */
+.btn-google {
+  border: 1.8px solid #e7e7e7;
+}
+.btn-google:hover {
+  border-color: #4285f4;
+  box-shadow: 0 0 0 5px #dbe7ff;
+}
+
+.btn-twitter {
+  border: 1.8px solid #1da1f2;
+}
+.btn-twitter:hover {
+  background: #e7f5ff;
+  border-color: #1da1f2;
+  box-shadow: 0 0 0 5px #c2e4fa;
+}
+
+.btn-github {
+  border: 1.8px solid #333;
+}
+.btn-github:hover {
+  background: #f7f7f7;
+  border-color: #222;
+  box-shadow: 0 0 0 5px #e5e5e5;
+}
+
+
+/* -----------------------------------------------------
+   8. BUTTONS
+------------------------------------------------------ */
+.btn {
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.btn-primary {
+  background: var(--primary);
+  border: none;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: scale(1.03);
+  box-shadow: var(--shadow-hover);
+}
+.btn-secondary {
+  background: var(--secondary);
+  border: none;
+  color: #fff;
+}
+.btn-secondary:hover {
+  background: var(--secondary-hover);
+  transform: scale(1.03);
+}
+.btn-light {
+  background: #fff;
+  border: 1px solid var(--border-color);
+}
+.btn-light:hover {
+  background: var(--light-bg);
+}
+.btn-danger {
+  background: var(--error);
+  color: #fff;
+  border: none;
+}
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+/* -----------------------------------------------------
+   9. DROPDOWNS & MODALS
+------------------------------------------------------ */
+.dropdown-menu {
+  border-radius: var(--radius);
+  border: none;
+  box-shadow: var(--shadow);
+  animation: dropdownFade 0.25s ease;
+}
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-5px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.modal-content {
+  border-radius: var(--radius-lg);
+  border: none;
+}
+.modal-header {
+  border-bottom: 1px solid var(--border-color);
+}
+.modal-footer {
+  border-top: 1px solid var(--border-color);
+}
+
+/* -----------------------------------------------------
+   10. TABLE STYLING
+------------------------------------------------------ */
+.table {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.table thead th {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+}
+.table tbody tr:hover {
+  background: var(--light-bg);
+}
+
+/* -----------------------------------------------------
+   11. ALERTS & MESSAGES
+------------------------------------------------------ */
+.alert {
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  font-weight: 500;
+}
+.alert-success {
+  background: var(--success);
+  color: #fff;
+}
+.alert-danger {
+  background: var(--error);
+  color: #fff;
+}
+.alert-warning {
+  background: var(--warning);
+  color: #000;
+}
+
+/* -----------------------------------------------------
+   12. COMMENTS
+------------------------------------------------------ */
+.comment-box {
+  background: var(--light-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform var(--fast), box-shadow var(--fast);
+}
+.comment-box:hover {
+  transform: scale(1.01);
+  box-shadow: var(--shadow-hover);
+}
+.comment-author {
+  font-weight: 600;
+  color: var(--primary);
+}
+.comment-meta {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+/* -----------------------------------------------------
+   13. FOOTER
+------------------------------------------------------ */
+footer.footer {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: var(--text-light);
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.2);
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.footer a {
+  color: var(--warning);
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color var(--fast);
+}
+.footer a:hover {
+  color: #fff;
+}
+.footer .small-text {
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+/* -----------------------------------------------------
+   14. UTILITY CLASSES
+------------------------------------------------------ */
+/* Text colors */
+.text-primary { color: var(--primary) !important; }
+.text-secondary { color: var(--secondary) !important; }
+.text-success { color: var(--success) !important; }
+.text-danger { color: var(--error) !important; }
+.text-warning { color: var(--warning) !important; }
+.text-muted { color: var(--text-sub) !important; }
+
+/* Background colors */
+.bg-primary { background: var(--primary) !important; color: #fff; }
+.bg-secondary { background: var(--secondary) !important; color: #fff; }
+.bg-success { background: var(--success) !important; color: #fff; }
+.bg-danger { background: var(--error) !important; color: #fff; }
+.bg-warning { background: var(--warning) !important; }
+.bg-light { background: var(--light-bg) !important; }
+.bg-dark { background: var(--dark-bg) !important; color: #fff; }
+
+/* Display helpers */
+.d-flex { display: flex !important; }
+.flex-center { align-items: center; justify-content: center; }
+.flex-column { flex-direction: column; }
+
+/* Spacing helpers (padding) */
+.p-1 { padding: .25rem; }
+.p-2 { padding: .5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 3rem; }
+
+/* Rounded & shadow helpers */
+.rounded { border-radius: var(--radius) !important; }
+.rounded-lg { border-radius: var(--radius-lg) !important; }
+.shadow { box-shadow: var(--shadow) !important; }
+.shadow-hover:hover { box-shadow: var(--shadow-hover) !important; }
+
+/* -----------------------------------------------------
+   15. ANIMATIONS LIBRARY
+------------------------------------------------------ */
+/* Fade Ins */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+@keyframes fadeInLeft { from { opacity: 0; transform: translateX(-20px);} to { opacity: 1; transform: translateX(0);} }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(20px);} to { opacity: 1; transform: translateX(0);} }
+
+/* Zoom & Pulse */
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.9);} to { opacity: 1; transform: scale(1);} }
+@keyframes pulse { 0%, 100% { transform: scale(1);} 50% { transform: scale(1.05);} }
+
+/* Float & Shimmer */
+@keyframes floatAnim { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-8px);} }
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+/* Animation utility classes */
+.animate-fadeIn { animation: fadeIn 0.5s ease both; }
+.animate-fadeInUp { animation: fadeInUp 0.6s ease both; }
+.animate-fadeInLeft { animation: fadeInLeft 0.6s ease both; }
+.animate-fadeInRight { animation: fadeInRight 0.6s ease both; }
+.animate-zoomIn { animation: zoomIn 0.4s ease both; }
+.animate-pulse { animation: pulse 1.5s ease-in-out infinite; }
+.animate-float { animation: floatAnim 3s ease-in-out infinite; }
+
+/* -----------------------------------------------------
+   16. SKELETON LOADERS
+------------------------------------------------------ */
+.skeleton {
+  display: inline-block;
+  height: 1em;
+  background: #e2e8f0;
+  background-image: linear-gradient(
+    90deg,
+    #e2e8f0 0px,
+    #f1f5f9 40px,
+    #e2e8f0 80px
+  );
+  background-size: 600px;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: var(--radius);
+}
+.skeleton.circle { border-radius: 50%; }
+.skeleton.sm { height: .8em; }
+.skeleton.lg { height: 1.4em; }
+
+/* -----------------------------------------------------
+   17. MICRO-INTERACTIONS
+------------------------------------------------------ */
+/* Icon spin on hover */
+.icon-spin:hover {
+  transform: rotate(20deg);
+  transition: transform var(--fast);
+}
+/* Lift card slightly on hover */
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  transition: all var(--fast);
+}
+/* Link underline grow */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: currentColor;
+  transition: width var(--fast);
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* -----------------------------------------------------
+   18. RESPONSIVE MEDIA QUERIES
+------------------------------------------------------ */
+/* Large devices (≥1200px) */
+@media (max-width: 1200px) {
+  #hero h1 { font-size: 2rem; }
+}
+
+/* Medium devices (≥992px) */
+@media (max-width: 992px) {
+  .navbar-search { margin-top: 0.5rem; }
+  .form-container { padding: 1.5rem; }
+}
+
+/* Small devices (≥768px) */
+@media (max-width: 768px) {
+  #hero { padding: 2.5rem 1rem; }
+  #hero h1 { font-size: 1.8rem; }
+  .navbar-search { flex-direction: column; gap: 0.5rem;}
+}
+
+/* Extra small devices (≥576px) */
+@media (max-width: 576px) {
+  .navbar .navbar-brand { font-size: 1.4rem; }
+  .form-container { padding: 1rem; }
+  .card-img-top { height: 140px; }
+}
+/* ================= AUTH CARD STYLES ================= */
+/* These styles only affect the auth-card container in login/signup pages */
+
+.auth-main {
+  min-height: calc(100vh - 76px); /* adjust for fixed nav height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 15px;
+  background: none; /* no interference with navbar colours */
+}
+
+.auth-card {
+  background: linear-gradient(135deg, #6b3fa0 0%, #667eea 70%, #ffd369 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+  max-width: 420px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  color: #fff;
+  animation: fadeInUpAuth 0.6s ease;
+}
+
+.auth-card h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: #ffd369;
+  margin-bottom: 1.5rem;
+}
+
+/* Form labels and inputs inside auth-card */
+.auth-card .form-label {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: #ffd369;
+  margin-bottom: 0.35rem;
+}
+
+.auth-card .form-control {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  border-radius: 14px;
+  font-size: 1rem;
+  padding: .8em 1em;
+  margin-bottom: 1rem;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.auth-card .form-control::placeholder {
+  color: #e3dff8;
+  opacity: 0.85;
+}
+.auth-card .form-control:focus {
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 0 3px rgba(255,211,105,0.4);
+  outline: none;
+}
+
+/* Buttons inside auth card */
+.auth-card .btn-auth {
+  background: linear-gradient(90deg, #ffd369 60%, #764ba2 100%);
+  color: #2d214d;
+  font-weight: 700;
+  font-size: 1.05em;
+  border: none;
+  border-radius: 14px;
+  padding: 0.7em 1.2em;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.auth-card .btn-auth:hover {
+  background: linear-gradient(90deg, #764ba2 60%, #ffd369 100%);
+  color: #fff;
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* Links in auth card */
+.auth-card .highlight-link {
+  color: #ffd369;
+  text-decoration: underline;
+}
+.auth-card .highlight-link:hover {
+  color: #fff;
+}
+
+/* Alerts in auth card */
+.auth-card .alert {
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95em;
+  padding: 0.7em 1em;
+  margin-bottom: 1rem;
+}
+.auth-card .alert-danger {
+  background: rgba(255, 60, 60, 0.25);
+  color: #ffd369;
+}
+.auth-card .alert-success {
+  background: rgba(16, 185, 129, 0.18);
+  color: #19e392;
+}
+
+/* Animation */
+@keyframes fadeInUpAuth {
+  from { opacity:0; transform: translateY(25px);}
+  to { opacity:1; transform: none;}
+}
+
+/* Mobile tweaks */
+@media (max-width: 576px) {
+  .auth-main {
+    padding: 20px 10px;
+  }
+  .auth-card {
+    padding: 1.5rem 1rem;
+  }
+}
+/* === AUTH PAGE BACKGROUND & FONT === */
+/* Will not affect navbar or other pages */
+
+.auth-page {
+  background: linear-gradient(120deg, #667eea 0%, #764ba2 100%) fixed;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif; /* match other pages */
+}
+
+/* Center auth card vertically/horizontally */
+.auth-main {
+  min-height: calc(100vh - 76px); /* space for navbar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 15px;
+}
+
+/* Auth card colors and spacing */
+.auth-card {
+  background: rgba(0, 0, 0, 0.25); /* slightly see-through on gradient */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+  max-width: 420px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  color: #fff;
+  animation: fadeInUpAuth 0.6s ease;
+}
+
+.auth-card h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: #ffd369;
+  margin-bottom: 1.5rem;
+}
+
+.auth-card .form-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.05em;
+  color: #ffd369;
+}
+
+/* Animation */
+@keyframes fadeInUpAuth {
+  from { opacity:0; transform: translateY(25px);}
+  to   { opacity:1; transform: none;}
+}
+
+@media (max-width: 576px) {
+  .auth-main { padding: 20px 10px; }
+  .auth-card { padding: 1.5rem 1rem; }
+}
+.category-card-img {
+  display: block;
+  width: 100%;
+  height: 110px; /* fixed height */
+  object-fit: contain; /* keeps aspect ratio without cropping */
+  object-position: center;
+  background: #f9fafb; /* light background for image padding */
+  padding: 10px;
+  border-radius: 16px 16px 0 0; /* rounded top corners to match card */
+  transition: transform 0.3s ease;
+}
+
+.category-card-img:hover {
+  transform: scale(1.05); /* subtle zoom on hover */
+}
+/* Navbar custom styling */
+.site-navbar {
+  background: linear-gradient(90deg, var(--primary), var(--secondary)) !important;
+  color: var(--text-light);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+}
+
+.site-navbar .nav-link {
+  color: var(--text-light) !important;
+  font-weight: 500;
+  border-radius: var(--radius);
+  transition: background var(--fast), color var(--fast);
+}
+
+.site-navbar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--warning) !important;
+}
+
+.site-navbar .navbar-brand {
+  color: var(--text-light) !important;
+}
+
+.site-navbar .navbar-brand:hover {
+  color: var(--warning) !important;
+}
+
+/* === CREATE BLOGS FORM ENHANCEMENTS - GRADIENTS & ANIMATIONS === */
+
+.create-blog-form {
+  background: linear-gradient(135deg, #f7faff, #e6f0ff);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2rem;
+  margin-top: 2rem;
+  animation: fadeInUp 0.8s ease forwards;
+  transition: box-shadow 0.3s ease;
+}
+
+.create-blog-form:hover {
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.25);
+}
+
+.create-blog-form h1 {
+  color: var(--primary);
+  font-size: 2.2rem;
+  font-weight: 700;
+  border-bottom: 3px solid var(--primary);
+  padding-bottom: 14px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: padding-box; /* standard property */
+  -webkit-text-fill-color: transparent;
+  animation: slideInLeft 0.9s ease forwards;
+}
+
+/* Animate label fade-in on load */
+.create-blog-form label {
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.4rem;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.6s;
+  display: block;
+}
+
+/* Gradiented inputs with transitions */
+.create-blog-form .form-control,
+.create-blog-form .form-select {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  padding: 0.7rem 1rem;
+  font-size: 1.03rem;
+  background: linear-gradient(145deg, #ffffff, #f0f4ff);
+  color: var(--text-main);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  box-shadow: inset 2px 2px 6px #e1e6f7,
+              inset -2px -2px 6px #ffffff;
+}
+.create-blog-form .form-control:focus,
+.create-blog-form .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px 2px rgba(102, 126, 234, 0.3);
+  background: #eef4ff;
+  outline: none;
+}
+
+/* Subtle fade in for textarea */
+.create-blog-form textarea[name="content"] {
+  min-height: 180px;
+  resize: vertical;
+  animation: fadeInUp 1.2s ease forwards;
+  background: linear-gradient(145deg, #ffffff, #f2f7ff);
+}
+
+/* Tags input with gradient background */
+.create-blog-form input[name="tags"] {
+  font-style: italic;
+  background: linear-gradient(145deg, #f9f5ff, #e7e0ff);
+  transition: background 0.3s ease;
+}
+.create-blog-form input[name="tags"]:focus {
+  background: #e0d8ff;
+}
+
+/* File input gradient */
+.create-blog-form input[type="file"] {
+  background: linear-gradient(145deg, #f3f7ff, #e0e9ff);
+  padding: 0.45rem 0.7rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+.create-blog-form input[type="file"]:hover {
+  background: #d7defe;
+}
+
+/* Margin between form groups */
+.create-blog-form .mb-3 {
+  margin-bottom: 1.6rem !important;
+}
+.blog-article h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.blog-article h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+.blog-article h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.blog-article p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.blog-article ul, .blog-article ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.blog-article blockquote {
+  border-left: 4px solid #3B82F6;
+  padding-left: 1rem;
+  color: #555;
+  font-style: italic;
+  background: #f9f9f9;
+}
+
+/* Submit button with gradient and bounce hover */
+.create-blog-form .btn-primary {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.75rem 2rem;
+  font-size: 1.1em;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1.2s ease forwards;
+}
+.create-blog-form .btn-primary:hover {
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
+  animation: bounce 0.6s ease forwards;
+}
+
+/* Animations definitions */
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-3px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .create-blog-form {
+    padding: 1.5rem 1rem;
+  }
+  .create-blog-form h1 {
+    font-size: 1.4rem;
+    padding-bottom: 8px;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* === PROFILE FORM GLASSMORPHIC & ANIMATIONS === */
+
+.profile-glass-form {
+  max-width: 480px;
+  margin: 2rem auto;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  padding: 3rem 2.5rem;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: fadeInUp 1s ease forwards;
+  transition: box-shadow 0.4s ease;
+}
+
+.profile-glass-form:hover {
+  box-shadow: 0 12px 48px rgba(102, 126, 234, 0.6);
+}
+
+.profile-glass-form h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  background: linear-gradient(270deg, #667eea, #764ba2, #ffd369, #667eea);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  background-clip: padding-box; /* standard property */
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 10s ease infinite, slideInTop 1s ease forwards;
+  margin-bottom: 2.5rem;
+}
+.profile-glass-form {
+  background-color: #fff !important; /* Solid white card */
+  color: var(--text-main);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Profile picture glowing frame */
+.profile-pic {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 0 8px 3px rgba(102, 126, 234, 0.6),
+    0 0 16px 6px rgba(118, 75, 162, 0.5);
+  transition: box-shadow 0.5s ease;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+.profile-pic:hover {
+  box-shadow:
+    0 0 14px 5px rgba(102, 126, 234, 0.9),
+    0 0 32px 8px rgba(118, 75, 162, 0.75);
+}
+
+/* Floating labels in form */
+.form-floating > label {
+  color: rgba(17, 24, 39, 0.75);
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.form-floating > .form-control {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius);
+  border: none;
+  box-shadow: inset 4px 4px 10px rgba(255, 255, 255, 0.8),
+              inset -4px -4px 10px rgba(118, 75, 162, 0.15);
+  color: #222;
+  padding: 1.25rem 1rem 0.5rem 1rem;
+  font-weight: 600;
+  transition: all 0.35s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.form-floating > .form-control:focus,
+.form-floating > .form-control:not(:placeholder-shown) {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 0 10px 3px #667eea;
+  color: var(--primary);
+  outline: none;
+}
+
+.form-floating > .form-control:focus + label,
+.form-floating > .form-control:not(:placeholder-shown) + label {
+  color: var(--primary);
+  transform: translateY(-1.6rem) scale(0.85);
+  font-weight: 700;
+}
+
+/* File input with glass effect */
+.profile-glass-form input[type="file"] {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  border: none;
+  box-shadow: 4px 4px 8px rgba(255, 255, 255, 0.7),
+              -4px -4px 10px rgba(102, 126, 234, 0.15);
+  color: var(--text-main);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  width: 100%;
+  font-weight: 600;
+}
+.profile-glass-form input[type="file"]:hover {
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 18px 4px #667eea;
+}
+
+/* Submit button with glowing gradient and bounce */
+.btn-glow {
+  background: linear-gradient(270deg, #667eea, #764ba2, #ffd369);
+  background-size: 600% 600%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.85rem 2.5rem;
+  box-shadow: 0 0 15px #667eea;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.35s ease;
+  animation: gradientShift 10s ease infinite;
+  user-select: none;
+}
+.btn-glow:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 0 28px 6px #ffd369, 0 0 28px 6px #764ba2;
+  animation-play-state: paused;
+}
+
+/* Margin between form groups */
+.profile-glass-form .mb-3,
+.profile-glass-form .mb-4 {
+  margin-bottom: 1.8rem !important;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .profile-glass-form {
+    padding: 2rem 1.5rem;
+    max-width: 95%;
+  }
+  .profile-pic {
+    width: 90px;
+  }
+/* === PROFILE PAGE VIBRANT BACKGROUND GRADIENT === */
+.profile-bg {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #667eea 0%, #764ba2 48%, #ffd369 85%, #f9fafb 100%);
+  background-size: 150% 150%;
+  animation: gradientBgAnim 12s ease-in-out infinite;
+  /* To keep content readable under the glass card */
+  
+  }
+}
+body.profile-bg {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #667eea 0%, #764ba2 48%, #ffd369 85%, #f9fafb 100%);
+  background-size: 150% 150%;
+  animation: gradientBgAnim 12s ease-in-out infinite;
+  padding: 0;
+  margin: 0;
+}
+footer.footer {
+  margin-top: auto;
+  width: 100%;
+  /* other existing styles you have */
+}
+header, 
+.navbar {
+  width: 100%;
+  flex-shrink: 0;       /* Don't let nav collapse in flex layout */
+     /* Prevent accidental absolute positioning */
+}
+
+@keyframes gradientBgAnim {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* If you want the gradient ONLY behind the profile, and rest white: */
+.profile-bg {
+  background: radial-gradient(circle at 80% 10%, #ffd369 0%, #764ba2 80%) no-repeat,
+              linear-gradient(120deg, #667eea 0%, #764ba2 70%, #ffd369 110%);
+  background-size: cover;
+}
+
+/* If you want a thin glowing border for the card itself: */
+.profile-glass-form {
+  border: 2px solid rgba(118,75,162,0.25);
+  box-shadow:
+    0 12px 48px rgba(102, 126, 234, 0.4),
+    0 0 0 9px rgba(255,211,105,.07);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+/* Optionally, add a little animated hue to the card itself for extra pop: */
+@media (min-width: 768px) {
+  .profile-glass-form::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(140deg,
+      rgba(118,75,162, 0.06) 0%, rgba(255,211,105,0.10) 58%, rgba(102,126,234,0.14) 100%);
+    z-index: 0;
+    pointer-events: none;
+    /* animated overlay */
+    animation: cardGlassLight 8s ease-in-out infinite;
+  }
+  .profile-glass-form > * { position: relative; z-index: 1;}
+}
+
+@keyframes cardGlassLight {
+  0% { opacity: 0.70; }
+  50% { opacity: 1; }
+  100% { opacity: 0.75; }
+}
+/* === Background gradient animation === */
+.profile-bg {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #667eea, #6a4c93, #ff758c, #ffd369);
+  background-size: 300% 300%;
+  animation: bgAnimation 12s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+@keyframes bgAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === Card Styling with Glassmorphism === */
+.profile-card {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+/* === Title Styling === */
+.profile-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, #ffd369, #ff758c, #667eea);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: padding-box; /* standard property */
+  -webkit-text-fill-color: transparent;
+  animation: titleAnim 6s linear infinite;
+}
+
+@keyframes titleAnim {
+  0% { background-position: left; }
+  50% { background-position: right; }
+  100% { background-position: left; }
+}
+
+/* === Profile Picture Glow === */
+.profile-pic {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.5);
+  box-shadow: 0 0 15px 5px rgba(255,211,105,0.6), 0 0 25px 8px rgba(102,126,234,0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px 7px rgba(255,211,105,0.9), 0 0 35px 12px rgba(102,126,234,0.85);
+}
+
+/* === Floating Labels Styling === */
+.form-floating > label {
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.form-floating > .form-control {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #fff;
+}
+
+.form-floating > .form-control:focus {
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 12px rgba(255,211,105,0.7);
+}
+
+.form-floating > .form-control::placeholder { color: transparent; }
+
+/* === File input styling === */
+input[type="file"] {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+}
+
+input[type="file"]:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+/* === Gradient Button === */
+.btn-gradient {
+  background: linear-gradient(270deg, #ffd369, #ff758c, #667eea);
+  background-size: 300% 300%;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: bgAnimation 8s ease infinite;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 20px rgba(255,211,105,0.8), 0 0 30px rgba(102,126,234,0.7);
+}
+
+/* === Fade-in animation for card === */
+.animate-fadeInUp {
+  animation: fadeInUp 0.9s ease both;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Alerts Transparent Glass Style */
+.alert {
+  border-radius: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.alert-danger {
+  background: rgba(239,68,68,0.25);
+  color: #ffd369;
+}
+
+.alert-success {
+  background: rgba(16,185,129,0.25);
+  color: #fff;
+}
+/* Section titles */
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #667eea;
+  border-bottom: 3px solid #ffd369;
+  padding-bottom: 8px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.03em;
+  transition: color 0.3s ease;
+}
+
+h1:hover {
+  color: #764ba2;
+}
+
+/* Blog cards hover effect */
+.card {
+  border-radius: 16px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(118, 75, 162, 0.3);
+  transform: translateY(-6px);
+}
+
+/* Card title */
+.card-title {
+  color: #5a4a92;
+  font-weight: 700;
+}
+
+/* Card text */
+.card-text {
+  color: #4a4a4a;
+  font-size: 0.95rem;
+}
+
+/* Read More and like buttons */
+.btn-primary {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #764ba2, #ffd369);
+}
+
+.btn-outline-danger {
+  border-color: #ef4444;
+  color: #ef4444;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  border: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Like & Bookmark Buttons inside blog cards */
+.like-btn, .bookmark-btn {
+  font-size: 1.3rem;           /* bigger tap target */
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.like-btn span {
+  font-size: 0.9rem;
+  margin-left: 4px;
+}
+
+/* Hover Effects */
+.like-btn:hover {
+  transform: scale(1.2);
+  color: #dc3545; /* Bootstrap red for heart */
+}
+
+.bookmark-btn:hover {
+  transform: scale(1.2);
+  color: #ffc107; /* Bootstrap yellow for bookmark */
+}
+
+/* Remove outline glow when clicked */
+.like-btn:focus, .bookmark-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Make them look like clean icon buttons */
+.like-btn, .bookmark-btn {
+  background: transparent !important;
+  border: none !important;
+  padding: 0;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    html, body { height: 100%; }
+    body { display: flex; flex-direction: column; }
+    main { flex: 1; }
+    .myblogs-card-img { height: 200px; object-fit: cover; }
+    .empty-state { min-height: 40vh; }
+  </style>
+</head>
+<body>
+
+<%- include('partials/nav') %>
+
+<main class="container py-5">
+  <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+    <h1 class="fw-bold m-0">My Blogs</h1>
+    <a href="/blogs/new" class="btn btn-success mt-2 mt-sm-0">+ Create New Blog</a>
+  </div>
+
+  <% if (messages.success) { %>
+    <div class="alert alert-success"><%= messages.success %></div>
+  <% } %>
+
+  <% if (blogs.length === 0) { %>
+    <div class="d-flex justify-content-center align-items-center empty-state">
+      <div class="text-center p-4 rounded shadow-sm bg-light">
+        <h5 class="mb-2 text-muted">No blogs found</h5>
+        <p class="mb-3 text-muted">Start by creating your first blog!</p>
+        <a href="/blogs/new" class="btn btn-primary">Create Blog</a>
+      </div>
+    </div>
+  <% } else { %>
+    <div class="row g-4">
+      <% blogs.forEach(blog => { 
+        const likesArray = Array.isArray(blog.likes) ? blog.likes : [];
+        const userLiked = user ? likesArray.some(id => id.toString() === user._id.toString()) : false;
+      %>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm blog-card" data-url="/blog/<%= blog._id %>">
+            <img src="<%= blog.coverImage || '/uploads/blogImages/1.jpg' %>" 
+                 class="card-img-top myblogs-card-img"
+                 alt="Blog Cover">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <p class="card-text flex-grow-1"><%= blog.description %></p>
+              <p class="text-muted small mb-2">
+                Category: <%= blog.category?.name || 'Unknown' %> |
+                Views: <%= blog.views %> |
+                ❤️ <%= likesArray.length %>
+              </p>
+              <div>
+                <a href="/blog/<%= blog._id %>" class="btn btn-primary btn-sm">View</a>
+                <a href="/blogs/edit/<%= blog._id %>" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/blogs/delete/<%= blog._id %>" 
+                   class="btn btn-danger btn-sm" 
+                   onclick="return confirm('Are you sure you want to delete this blog?');">
+                   Delete
+                </a>
+                <% if (user) { %>
+                  <!-- Like AJAX -->
+                  <form action="/blog/<%= blog._id %>/like" method="POST" class="d-inline like-form">
+                    <button type="submit" class="like-btn border-0 bg-transparent btn-sm" aria-label="Like">
+                      <%= userLiked ? '❤️' : '🤍' %>
+                      <span><%= likesArray.length %></span>
+                    </button>
+                  </form>
+
+                  <!-- Bookmark AJAX -->
+                  <form action="/bookmarks/<%= blog._id %>" method="POST" class="d-inline bookmark-form">
+                    <button type="submit" class="bookmark-btn border-0 bg-transparent btn-sm" aria-label="Bookmark">
+                      <% if (user.bookmarks && user.bookmarks.includes(blog._id.toString())) { %>
+                        🔖
+                      <% } else { %>
+                        📑
+                      <% } %>
+                    </button>
+                  </form>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</main>
+
+<%- include('partials/footer') %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Card click navigation
+  document.querySelectorAll('.blog-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (!e.target.closest('a') && !e.target.closest('button') && !e.target.closest('form')) {
+        window.location.href = this.dataset.url;
+      }
+    });
+  });
+
+  // AJAX Like
+  document.querySelectorAll('.like-form').forEach(form => {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const btn = this.querySelector('.like-btn');
+      const url = this.getAttribute('action');
+      try {
+        const res = await fetch(url, { method: 'POST', headers: { 'X-Requested-With': 'XMLHttpRequest' }});
+        const data = await res.json();
+        if (data.success) {
+          btn.innerHTML = (data.liked ? '❤️' : '🤍') + ` <span>${data.likesCount}</span>`;
+        }
+      } catch (err) { console.error('Like request failed', err); }
+    });
+  });
+
+  // AJAX Bookmark
+  document.querySelectorAll('.bookmark-form').forEach(form => {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const btn = this.querySelector('.bookmark-btn');
+      const url = this.getAttribute('action');
+      try {
+        const res = await fetch(url, { method: 'POST', headers: { 'X-Requested-With': 'XMLHttpRequest' }});
+        const data = await res.json();
+        if (data.success) {
+          btn.textContent = data.bookmarked ? '🔖' : '📑';
+        }
+      } catch (err) { console.error('Bookmark request failed', err); }
+    });
+  });
+
+});
+</script>
+
+</body>
+</html>

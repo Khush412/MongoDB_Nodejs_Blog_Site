@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include('partials/nav') %>
+
+<div class="container my-5 blogs-page">
+
+  <!-- ===== Latest Posts Section ===== -->
+  <section class="blogs-section">
+    <h1 class="section-title">📅 Latest Posts</h1>
+    <div class="row">
+      <% if (latestBlogs && latestBlogs.length > 0) { %>
+        <% latestBlogs.forEach(blog => { %>
+          <div class="col-md-4 mb-4">
+            <div class="blog-card" data-url="/blog/<%= blog._id %>">
+              <%- include('partials/blogCard', { blog, user }) %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-muted">No latest blogs found.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- ===== Most Popular This Year Section ===== -->
+  <section class="blogs-section mt-5">
+    <h1 class="section-title">🔥 Most Popular This Year</h1>
+    <div class="row">
+      <% if (popularBlogs && popularBlogs.length > 0) { %>
+        <% popularBlogs.forEach(blog => { %>
+          <div class="col-md-4 mb-4">
+            <div class="blog-card" data-url="/blog/<%= blog._id %>">
+              <%- include('partials/blogCard', { blog, user }) %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-muted">No popular blogs for this year yet.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- ===== Random Picks Section ===== -->
+  <section class="blogs-section mt-5">
+    <h1 class="section-title">🎯 Random Picks</h1>
+    <div class="row">
+      <% if (randomBlogs && randomBlogs.length > 0) { %>
+        <% randomBlogs.forEach(blog => { %>
+          <div class="col-md-4 mb-4">
+            <div class="blog-card" data-url="/blog/<%= blog._id %>">
+              <%- include('partials/blogCard', { blog, user }) %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-muted">No random blogs available at the moment.</p>
+      <% } %>
+    </div>
+  </section>
+
+</div>
+
+<%- include('partials/footer') %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Make the whole blog card clickable except buttons, links, forms
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.blog-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (!e.target.closest('a') && !e.target.closest('button') && !e.target.closest('form')) {
+        window.location.href = this.dataset.url;
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

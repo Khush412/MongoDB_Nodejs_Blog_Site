@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - The Daily Dairy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .about-hero {
+      background: url('/images/about-hero.png') center center/cover no-repeat;
+      height: 300px;
+      border-radius: 16px;
+      margin-bottom: 3rem;
+      position: relative;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 2.75rem;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+    .about-list li {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<%- include('partials/nav') %>
+
+<div class="container py-5" style="max-width:900px;">
+  <div class="about-hero">About The Daily Dairy</div>
+
+  <p class="lead mb-4">
+    Welcome to <strong>The Daily Dairy</strong> — your trusted platform to share stories, ideas, and connect with a vibrant writing community.
+  </p>
+
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <img src="/images/team-collaboration.png" alt="Team Collaboration" class="img-fluid rounded shadow-sm" />
+    </div>
+    <div class="col-md-6">
+      <h3>Our Mission</h3>
+      <p>
+        Founded in <%= new Date().getFullYear() %>, we empower creators to tell their stories, build audiences, and engage meaningfully. Our platform fuels creativity, respect, and community connection.
+      </p>
+      <ul class="about-list list-unstyled ps-3">
+        <li>📝 Easy publishing & editing tools</li>
+        <li>👀 Discover trending content daily</li>
+        <li>❤️ Engage through likes, bookmarks, and comments</li>
+        <li>🔒 Respect for your privacy and data security</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="fs-5">
+    We’re always improving — send your feedback or inquiries via our <a href="/contact" class="link-primary">Contact page</a>.
+  </p>
+</div>
+
+<%- include('partials/footer') %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

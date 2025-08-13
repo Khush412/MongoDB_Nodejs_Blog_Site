@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .blog-article h1 { font-size: 2.4rem; font-weight: 700; margin-top: 1.5rem; }
+    .blog-article h2 { font-size: 2rem; font-weight: 600; margin-top: 1.25rem; }
+    .blog-article h3 { font-size: 1.6rem; font-weight: 600; margin-top: 1rem; }
+    .blog-article p { line-height: 1.7; margin-bottom: 1rem; }
+    .blog-article blockquote {
+      border-left: 4px solid #3B82F6;
+      padding-left: 1rem;
+      color: #555;
+      font-style: italic;
+      background: #f9f9f9;
+    }
+    .blog-article ul, .blog-article ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+    
+  </style>
+</head>
+<body class="blog-detail-body">
+
+<%- include('partials/nav') %>
+
+<div class="blog-detail-container">
+
+  <!-- Back Button -->
+  <div class="top-back-btn mb-4">
+    <button onclick="history.back()" class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left"></i> Back
+    </button>
+  </div>
+
+  <!-- Cover Image -->
+  <% if (blog.coverImage) { %>
+  <div class="blog-cover-wrapper position-relative mb-5">
+    <img src="<%= blog.coverImage %>" alt="Blog Cover" class="blog-cover-img">
+
+    <% 
+      const likesArray = Array.isArray(blog.likes) ? blog.likes : [];
+      const userLiked = user && likesArray.some(id => id.toString() === user._id.toString());
+    %>
+    <form action="/blog/<%= blog._id %>/like" method="POST" 
+          class="like-btn-overlay position-absolute bottom-0 start-0 m-3">
+      <button type="submit" 
+              class="like-btn <%= userLiked ? 'liked' : '' %>">
+        ❤️ <span><%= likesArray.length %></span>
+      </button>
+    </form>
+
+    <div class="blog-meta-overlay position-absolute bottom-0 end-0 m-3 text-white text-end">
+      <p class="mb-1 small">By <strong><%= blog.author.name %></strong></p>
+      <p class="mb-1 small"><i class="bi bi-calendar3"></i> <%= new Date(blog.createdAt).toLocaleDateString() %></p>
+      <p class="mb-0 small"><i class="bi bi-eye"></i> <%= blog.views + 1 %> Views</p>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- Blog Content -->
+  <section class="blog-content-block mb-5">
+    <h1 class="blog-title mb-4"><%= blog.title %></h1>
+    <article class="blog-article">
+      <%- blog.content %>
+    </article>
+  </section>
+
+  <hr class="content-comments-separator" />
+
+  <!-- Comments -->
+  <section class="comments-section">
+    <h3 class="fw-semibold mb-4">💬 Comments</h3>
+
+    <% if (user) { %>
+      <form action="/blog/<%= blog._id %>/comment" method="POST" class="mb-4 comment-form">
+        <textarea name="text" class="form-control mb-3" rows="3" placeholder="Write a comment..." required></textarea>
+        <button type="submit" class="btn btn-gradient">Post Comment</button>
+      </form>
+    <% } else { %>
+      <p><a href="/login">Log in</a> to post a comment.</p>
+    <% } %>
+
+    <% blog.comments.slice().reverse().forEach(comment => { 
+         const commentUpvotes = comment.upvotes || [];
+         const userUpvoted = user && commentUpvotes.some(id => id.toString() === user._id.toString());
+    %>
+      <div id="comment-<%= comment._id %>" class="comment-card mb-3">
+        <div class="comment-header d-flex justify-content-between">
+          <strong><%= comment.name %></strong>
+          <small class="text-muted"><%= new Date(comment.createdAt).toLocaleString() %></small>
+        </div>
+        <p class="comment-text"><%= comment.text %></p>
+
+        <form action="/blog/<%= blog._id %>/comment/<%= comment._id %>/upvote" method="POST" 
+              class="comment-upvote-form">
+          <button type="submit" 
+                  class="btn btn-sm <%= userUpvoted ? 'btn-primary' : 'btn-outline-primary' %>">
+            <i class="bi bi-arrow-up"></i> <%= commentUpvotes.length %>
+          </button>
+        </form>
+
+        <% if (
+          user && comment.user &&
+          (
+            (comment.user._id && comment.user._id.toString() === user._id.toString()) ||
+            (comment.user.toString() === user._id.toString())
+          )
+        ) { %>
+          <a href="/blog/<%= blog._id %>/comment/<%= comment._id %>/delete" 
+             class="delete-comment btn btn-danger btn-sm"
+             onclick="return confirm('Delete this comment?');">
+            <i class="bi bi-trash"></i>
+          </a>
+        <% } %>
+      </div>
+    <% }) %>
+  </section>
+
+</div>
+
+<%- include('partials/footer') %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

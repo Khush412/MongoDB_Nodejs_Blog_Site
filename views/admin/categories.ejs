@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body { background: #f4f6f9; }
+        .admin-layout { display: flex; min-height: calc(100vh - 56px); }
+        .sidebar { background: linear-gradient(180deg, #212529, #2c3034); color: #fff; width: 250px; flex-shrink: 0; display: flex; flex-direction: column; padding-top: 20px; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .sidebar h5 { padding-left: 1rem; margin-bottom: 1rem; font-weight: 600; }
+        .sidebar .nav-link { color: #adb5bd; padding: 10px 20px; font-size: 0.95rem; border-radius: 8px; margin: 4px 12px; transition: all 0.3s ease; }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active { background-color: #495057; color: #fff; transform: translateX(4px); }
+        .sidebar .logout-btn { margin-top: auto; padding: 15px; }
+        .admin-content { flex: 1; padding: 20px; background: #f8f9fa; }
+    </style>
+</head>
+<body>
+<%- include('../partials/nav') %>
+
+<div class="admin-layout">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <h5>Admin Menu</h5>
+        <ul class="nav flex-column">
+            <li><a class="nav-link" href="/admin/dashboard"><i class="fas fa-home me-2"></i> Dashboard</a></li>
+            <li><a class="nav-link" href="/admin/users"><i class="fas fa-users me-2"></i> Manage Users</a></li>
+            <li><a class="nav-link active" href="/admin/categories"><i class="fas fa-tags me-2"></i> Categories</a></li>
+            <li><a class="nav-link" href="/admin/site-settings"><i class="fas fa-cogs me-2"></i> Site Settings</a></li>
+        </ul>
+        <div class="logout-btn">
+            <a href="/logout" class="btn btn-danger w-100"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+        <h2><i class="fas fa-tags me-2"></i>Manage Categories</h2>
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <form class="row g-2" method="POST" action="/admin/categories/add" enctype="multipart/form-data">
+                    <div class="col-md-6">
+                        <input type="text" name="name" class="form-control" placeholder="Category Name" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="file" name="image" accept="image/*" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100" type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card shadow-sm border-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th><th>Image</th><th>Name</th><th>Created</th><th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% categories.forEach((c, index) => { %>
+                    <tr>
+                        <td><%= index+1 %></td>
+                        <td><img src="<%= c.image %>" style="width:50px;height:50px;object-fit:cover;"></td>
+                        <td><%= c.name %></td>
+                        <td><%= c.createdAt.toLocaleDateString() %></td>
+                        <td class="text-end">
+                            <a href="/admin/categories/<%= c._id %>/edit" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                            <form method="POST" action="/admin/categories/<%= c._id %>/delete" class="d-inline" onsubmit="return confirm('Delete category?')">
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+<%- include('../partials/footer') %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

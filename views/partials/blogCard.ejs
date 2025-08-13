@@ -1,0 +1,56 @@
+<div class="card h-100 shadow-sm">
+
+  <!-- Blog Image -->
+  <img src="<%= blog.coverImage || '/uploads/blogImages/1.jpg' %>" 
+       class="card-img-top" 
+       alt="Blog Cover"
+       style="height:200px; object-fit:cover;">
+
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title"><%= blog.title %></h5>
+    <p class="card-text flex-grow-1">
+      <%= blog.description && blog.description.length > 120 
+            ? blog.description.substring(0,120)+'...' 
+            : blog.description %>
+    </p>
+
+    <p class="text-muted small mb-2">
+      Category: <%= blog.category?.name || 'Unknown' %> |
+      Views: <%= blog.views %> |
+      ❤️ <%= Array.isArray(blog.likes) ? blog.likes.length : 0 %>
+    </p>
+
+    <div class="mt-auto d-flex align-items-center">
+      <!-- Read More -->
+      <a href="/blog/<%= blog._id %>" class="btn btn-primary btn-sm me-2">Read More</a>
+
+      <!-- Like -->
+      <% if (user) {
+        const likesArray = Array.isArray(blog.likes) ? blog.likes : [];
+        const userLiked = likesArray.some(id => id.toString() === user._id.toString());
+      %>
+        <form action="/blog/<%= blog._id %>/like" method="POST"
+              class="d-inline me-2 like-form">
+          <button type="submit" class="like-btn border-0 bg-transparent px-1" aria-label="Like">
+            <%= userLiked ? '❤️' : '🤍' %>
+            <span><%= likesArray.length %></span>
+          </button>
+        </form>
+      <% } %>
+
+      <!-- Bookmark -->
+      <% if (user) { %>
+        <form action="/bookmarks/<%= blog._id %>" method="POST"
+              class="d-inline bookmark-form">
+          <button type="submit" class="bookmark-btn border-0 bg-transparent px-1" aria-label="Bookmark">
+            <% if (user.bookmarks && user.bookmarks.includes(blog._id.toString())) { %>
+              🔖
+            <% } else { %>
+              📑
+            <% } %>
+          </button>
+        </form>
+      <% } %>
+    </div>
+  </div>
+</div>
