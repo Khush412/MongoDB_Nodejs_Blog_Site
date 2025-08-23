@@ -1,66 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title><%= title %></title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
-<style>
-body { background:#f4f6f9; }
-.admin-layout { display:flex; min-height:calc(100vh - 56px);}
-.sidebar { background: linear-gradient(180deg,#212529,#2c3034); color:#fff; width:250px; flex-shrink:0; display:flex; flex-direction:column; padding-top:20px; position:sticky; top:56px; height:calc(100vh - 56px); overflow-y:auto; border-bottom-left-radius:40px; border-bottom-right-radius:40px; box-shadow:0 4px 20px rgba(0,0,0,0.4);}
-.sidebar h5 { padding-left:1rem; margin-bottom:1rem; font-weight:600;}
-.sidebar .nav-link { color:#adb5bd; padding:10px 20px; font-size:0.95rem; border-radius:8px; margin:4px 12px; transition:all 0.3s ease;}
-.sidebar .nav-link:hover, .sidebar .nav-link.active { background-color:#495057; color:#fff; transform:translateX(4px);}
-.sidebar .logout-btn { margin-top:auto; padding:15px;}
-.admin-content { flex:1; padding:20px; background:#f8f9fa;}
-</style>
-</head>
-<body>
-<%- include('../partials/nav') %>
 
-<div class="admin-layout">
-  <!-- Sidebar -->
-  <nav class="sidebar">
-      <h5>Admin Menu</h5>
-      <ul class="nav flex-column">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/images/Site-icon.png" />
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      background: #f4f6f9;
+    }
+
+    .admin-layout {
+      display: flex;
+      min-height: calc(100vh - 56px);
+    }
+
+    .sidebar {
+      background: linear-gradient(180deg, #212529, #2c3034);
+      color: #fff;
+      width: 250px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+      position: sticky;
+      top: 56px;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .sidebar h5 {
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .sidebar .nav-link {
+      color: #adb5bd;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      margin: 4px 12px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      background-color: #495057;
+      color: #fff;
+      transform: translateX(4px);
+    }
+
+    .sidebar .logout-btn {
+      margin-top: auto;
+      padding: 15px;
+    }
+
+    .admin-content {
+      flex: 1;
+      padding: 20px;
+      background: #f8f9fa;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+    <div class="admin-layout">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <h5>Admin Menu</h5>
+        <ul class="nav flex-column">
           <li><a class="nav-link" href="/admin/dashboard"><i class="fas fa-home me-2"></i> Dashboard</a></li>
           <li><a class="nav-link" href="/admin/users"><i class="fas fa-users me-2"></i> Manage Users</a></li>
           <li><a class="nav-link active" href="/admin/categories"><i class="fas fa-tags me-2"></i> Categories</a></li>
           <li><a class="nav-link" href="/admin/site-settings"><i class="fas fa-cogs me-2"></i> Site Settings</a></li>
-      </ul>
-      <div class="logout-btn">
+        </ul>
+        <div class="logout-btn">
           <a href="/logout" class="btn btn-danger w-100"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
-      </div>
-  </nav>
+        </div>
+      </nav>
 
-  <!-- Main Content -->
-  <main class="admin-content">
-    <div class="card shadow-sm p-4" style="max-width:500px;width:100%;margin:auto;">
-      <h3 class="mb-4"><i class="fas fa-edit me-2"></i>Edit Category</h3>
-      <form method="POST" action="/admin/categories/<%= category._id %>/edit" enctype="multipart/form-data">
-        <div class="mb-3">
-          <label>Category Name</label>
-          <input type="text" name="name" class="form-control" value="<%= category.name %>" required>
+      <!-- Main Content -->
+      <main class="admin-content">
+        <div class="card shadow-sm p-4" style="max-width:500px;width:100%;margin:auto;">
+          <h3 class="mb-4"><i class="fas fa-edit me-2"></i>Edit Category</h3>
+          <form method="POST" action="/admin/categories/<%= category._id %>/edit" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label>Category Name</label>
+              <input type="text" name="name" class="form-control" value="<%= category.name %>" required>
+            </div>
+            <div class="mb-3">
+              <label>Image</label>
+              <input type="file" name="image" accept="image/*" class="form-control">
+              <div class="mt-2">
+                <img src="<%= category.image %>" style="max-width:100%;height:120px;object-fit:cover;">
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-success w-50" type="submit"><i class="fas fa-save"></i> Save</button>
+              <a href="/admin/categories" class="btn btn-secondary w-50">Cancel</a>
+            </div>
+          </form>
         </div>
-        <div class="mb-3">
-          <label>Image</label>
-          <input type="file" name="image" accept="image/*" class="form-control">
-          <div class="mt-2">
-            <img src="<%= category.image %>" style="max-width:100%;height:120px;object-fit:cover;">
-          </div>
-        </div>
-        <div class="d-flex gap-2">
-          <button class="btn btn-success w-50" type="submit"><i class="fas fa-save"></i> Save</button>
-          <a href="/admin/categories" class="btn btn-secondary w-50">Cancel</a>
-        </div>
-      </form>
+      </main>
     </div>
-  </main>
-</div>
 
-<%- include('../partials/footer') %>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <%- include('../partials/footer') %>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

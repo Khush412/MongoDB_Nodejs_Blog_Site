@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/images/Site-icon.png" />
+  <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body class="profile-bg">
 
-<%- include('partials/nav') %>
+  <%- include('partials/nav') %>
 
-<div class="container mt-4 profile-glass-form">
-  <h2 style="
+    <div class="container mt-4 profile-glass-form">
+      <h2 style="
   color: rgb(7, 7, 7);
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   font-weight: 700;
@@ -21,49 +24,58 @@
   letter-spacing: 0.5px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 ">
-  My Profile
-</h2>
+        My Profile
+      </h2>
 
 
-  <% if (messages.error) { %>
-      <div class="alert alert-danger"><%= messages.error %></div>
-  <% } %>
-  <% if (messages.success) { %>
-      <div class="alert alert-success"><%= messages.success %></div>
-  <% } %>
+      <% if (messages.error) { %>
+        <div class="alert alert-danger">
+          <%= messages.error %>
+        </div>
+        <% } %>
+          <% if (messages.success) { %>
+            <div class="alert alert-success">
+              <%= messages.success %>
+            </div>
+            <% } %>
 
-  <form action="/profile" method="POST" enctype="multipart/form-data" >
-    <div class="mb-3">
-      <img src="<%= user.profilePic %>" alt="Profile" class="profile-pic rounded-circle">
+              <form action="/profile" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <img src="<%= user.profilePic %>" alt="Profile" class="profile-pic rounded-circle">
+                </div>
+
+                <div class="form-floating mb-4">
+                  <input type="text" name="name" id="name" class="form-control" value="<%= user.name %>"
+                    placeholder="Name" required>
+                  <label for="name">Name</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                  <input type="email" name="email" id="email" class="form-control" value="<%= user.email %>"
+                    placeholder="Email" required>
+                  <label for="email">Email</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                  <input type="password" name="password" id="password" class="form-control"
+                    placeholder="New Password (leave blank to keep old one)">
+                  <label style="color: rgb(216, 208, 208);" for="password">New Password (leave blank to keep old
+                    one)</label>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Profile Picture</label>
+                  <input type="file" name="profilePic" accept="image/*" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-glow">Update Profile</button>
+              </form>
     </div>
 
-    <div class="form-floating mb-4">
-      <input type="text" name="name" id="name" class="form-control" value="<%= user.name %>" placeholder="Name" required>
-      <label for="name">Name</label>
-    </div>
 
-    <div class="form-floating mb-4">
-      <input type="email" name="email" id="email" class="form-control" value="<%= user.email %>" placeholder="Email" required>
-      <label for="email">Email</label>
-    </div>
+    <%- include('partials/footer') %>
 
-    <div class="form-floating mb-4">
-      <input type="password" name="password" id="password" class="form-control" placeholder="New Password (leave blank to keep old one)">
-      <label for="password">New Password (leave blank to keep old one)</label>
-    </div>
-
-    <div class="mb-4">
-      <label class="form-label">Profile Picture</label>
-      <input type="file" name="profilePic" accept="image/*" class="form-control">
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-glow">Update Profile</button>
-  </form>
-</div>
-
-
-<%- include('partials/footer') %>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

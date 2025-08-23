@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><%= title %></title>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="icon" type="image/png" href="/images/Site-icon.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/css/style.css">
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
   <style>
     /* Category card image styling */
     .category-card-img {
@@ -24,64 +22,74 @@
       border-radius: 16px 16px 0 0;
       transition: transform 0.3s ease;
     }
+
     .category-card-img:hover {
       transform: scale(1.05);
     }
+
     /* Card styling */
     .card {
       border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
       overflow: hidden;
-      text-decoration: none; /* remove link underline */
-      color: inherit;        /* preserve text color */
+      text-decoration: none;
+      /* remove link underline */
+      color: inherit;
+      /* preserve text color */
     }
+
     .card-body {
       padding: 1rem;
     }
   </style>
 </head>
+
 <body>
 
-<%- include('partials/nav') %>
+  <%- include('partials/nav') %>
 
-<!-- Hero Section -->
-<section id="hero" class="d-flex align-items-center justify-content-center text-center">
-  <div class="container">
-    <img src="/images/your-site-logo.png" alt="Site Logo" class="animate-float" style="max-width:150px; margin:0 auto; display:block;">
-    <h1 class="display-4 fw-bold mb-2" style="color: white;">Welcome to The Daily Dairy</h1>
-    <p class="lead mb-4">Your daily dose of stories, advice & insights on every topic you love</p>
-    <a href="#categories" class="btn btn-light btn-lg">Explore Categories &darr;</a>
-  </div>
-</section>
+    <!-- Hero Section -->
+    <section id="hero" class="d-flex align-items-center justify-content-center text-center">
+      <div class="container">
+        <img src="/images/your-site-logo.png" alt="Site Logo" class="animate-float"
+          style="max-width:150px; margin:0 auto; display:block;">
+        <h1 class="display-4 fw-bold mb-2" style="color: white;">Welcome to The Daily Dairy</h1>
+        <p class="lead mb-4">Your daily dose of stories, advice & insights on every topic you love</p>
+        <a href="#categories" class="btn btn-light btn-lg">Explore Categories &darr;</a>
+      </div>
+    </section>
 
-<!-- Categories Section -->
-<section id="categories" class="container mt-5">
-  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-    <h2 class="fw-bold m-0">Explore Our Blog Categories</h2>
-    <a href="/blogs" class="btn btn-primary btn-lg">
-      <i class="bi bi-collection"></i> View All Blogs
-    </a>
-  </div>
-
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-    <% categories.forEach(cat => { %>
-      <div class="col">
-        <a href="/category/<%= cat.slug %>" style="text-decoration:none; color:inherit;">
-          <div class="card h-100 shadow-sm">
-            <img src="<%= cat.image %>" alt="<%= cat.name %> image" class="category-card-img" />
-            <div class="card-body text-center">
-              <h5 class="card-title"><%= cat.name %></h5>
-              <span class="btn btn-primary">View Blogs</span>
-            </div>
-          </div>
+    <!-- Categories Section -->
+    <section id="categories" class="container mt-5">
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <h2 class="fw-bold m-0">Explore Our Blog Categories</h2>
+        <a href="/blogs" class="btn btn-primary btn-lg">
+          <i class="bi bi-collection"></i> View All Blogs
         </a>
       </div>
-    <% }) %>
-  </div>
-</section>
 
-<%- include('partials/footer') %>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <% categories.forEach(cat=> { %>
+          <div class="col">
+            <a href="/category/<%= cat.slug %>" style="text-decoration:none; color:inherit;">
+              <div class="card h-100 shadow-sm">
+                <img src="<%= cat.image %>" alt="<%= cat.name %> image" class="category-card-img" />
+                <div class="card-body text-center">
+                  <h5 class="card-title">
+                    <%= cat.name %>
+                  </h5>
+                  <span class="btn btn-primary">View Blogs</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <% }) %>
+      </div>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <%- include('partials/footer') %>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -225,7 +225,7 @@
 
 <div id="chatWidget" role="dialog" aria-modal="true" aria-labelledby="chatTitle">
   <header>
-    <span id="chatTitle">AI Chatbot</span>
+    <span id="chatTitle">AI Assistant</span>
     <button id="chatCloseBtn" aria-label="Close chat">&times;</button>
   </header>
   <div id="chatMessages" aria-live="polite"></div>
@@ -241,3 +241,17 @@
 <!-- JS: Floating chatbot frontend script -->
 <script src="/js/floatingChatbot.js"></script>
 <script src="/js/likes.js"></script>
+<script>document.getElementById('darkModeToggle').addEventListener('change', function() {
+  document.body.classList.toggle('dark-mode', this.checked);
+  // Save preference
+  localStorage.setItem('theme', this.checked ? 'dark' : 'light');
+});
+
+// On page load, set initial state
+window.addEventListener('DOMContentLoaded', () => {
+  const dark = localStorage.getItem('theme') === 'dark';
+  document.body.classList.toggle('dark-mode', dark);
+  document.getElementById('darkModeToggle').checked = dark;
+});
+
+</script>
