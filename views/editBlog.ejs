@@ -184,12 +184,20 @@
               wysiwygArea.style.display = 'block';
               setTimeout(() => {
                 tinymce.init({
-                  selector: '#contentWYSIWYG',
-                  height: 400,
-                  menubar: true,
-                  plugins: 'link lists code table',
-                  toolbar: 'undo redo | styles | bold italic underline | bullist numlist | link | code',
-                });
+  selector: '#contentWYSIWYG',
+
+  // Plugins and toolbar you already use
+  menubar: true,
+  plugins: 'link lists code table',
+  toolbar: 'undo redo | styles | bold italic underline | bullist numlist | link | code',
+
+  // Enable dark skin (UI) and content styles
+  skin: 'oxide-dark',          // Dark mode UI skin
+  content_css: 'dark',         // Dark mode content styling
+
+  height: 400
+});
+
               }, 50);
               editorActive = true;
             } else {

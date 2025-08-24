@@ -2345,3 +2345,327 @@ body {
 .darkmode-switch input:checked+.slider::before {
   transform: translateX(24px);
 }
+/* === Add-ons and fix for proper dark mode on all pages === */
+
+body.dark-mode {
+  /* Override some colors for white text and better readability */
+  --text-main: #f0f0f0;   /* Near white */
+  --text-sub: #f9f8f8;
+  --text-light: #f0e7e7;
+}
+
+/* Navbar */
+body.dark-mode nav.site-navbar {
+  background: linear-gradient(90deg, var(--primary), var(--secondary)) !important;
+  color: var(--text-light) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+body.dark-mode nav.site-navbar .nav-link {
+  color: var(--text-light) !important;
+}
+
+body.dark-mode nav.site-navbar .nav-link:hover,
+body.dark-mode nav.site-navbar .nav-link.active {
+  background: rgba(255 255 255 / 0.15);
+  color: var(--warning) !important;
+}
+
+/* Navbar brand */
+body.dark-mode nav.site-navbar .navbar-brand {
+  color: var(--text-light) !important;
+}
+
+body.dark-mode nav.site-navbar .navbar-brand:hover {
+  color: var(--warning);
+}
+
+/* Cards */
+body.dark-mode .card,
+body.dark-mode .blog-card {
+  background-color: var(--card-bg) !important;
+  color: var(--text-main);
+  border-color: var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  transition: box-shadow 0.3s ease;
+}
+
+body.dark-mode .card:hover,
+body.dark-mode .blog-card:hover {
+  box-shadow: 0 8px 36px rgba(0, 0, 0, 1);
+}
+
+/* Card images */
+body.dark-mode .card-img-top {
+  background: transparent;
+}
+
+/* Headings */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .section-title,
+body.dark-mode .card-title {
+  color: var(--primary);
+}
+
+/* Muted text */
+body.dark-mode .text-muted {
+  color: var(--text-sub) !important;
+}
+
+/* Links and buttons */
+body.dark-mode a,
+body.dark-mode a:hover,
+body.dark-mode .btn,
+body.dark-mode button {
+  color: var(--primary);
+}
+
+body.dark-mode a:hover,
+body.dark-mode .btn-primary:hover {
+  color: var(--primary-hover);
+  background-color: transparent;
+}
+
+/* Forms */
+body.dark-mode .form-control,
+body.dark-mode .form-select,
+body.dark-mode textarea.form-control {
+  background-color: var(--light-bg);
+  color: var(--text-main);
+  border-color: var(--border-color);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode .form-control::placeholder {
+  color: var(--text-sub);
+}
+
+/* Footer */
+body.dark-mode footer.footer {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: var(--text-light);
+}
+
+body.dark-mode footer.footer a {
+  color: var(--warning);
+}
+
+body.dark-mode footer.footer a:hover {
+  color: #fff;
+}
+
+/* Dropdowns */
+body.dark-mode .dropdown-menu {
+  background: var(--card-bg);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+body.dark-mode .dropdown-item {
+  color: var(--text-main);
+}
+
+body.dark-mode .dropdown-item:hover,
+body.dark-mode .dropdown-item.active {
+  background-color: #292e35;
+  color: var(--primary);
+}
+/* ==== blogDetail Dark Mode styles ==== */
+body.dark-mode.blog-detail-body {
+  background-color: var(--dark-bg);
+  color: var(--text-main);
+}
+
+/* Container inside blog detail */
+body.dark-mode.blog-detail-body .blog-detail-container {
+  background: var(--card-bg);
+  color: var(--text-main);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* Blog cover wrapper */
+body.dark-mode.blog-detail-body .blog-cover-wrapper {
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-lg);
+}
+
+/* Blog article text */
+body.dark-mode.blog-detail-body .blog-article {
+  color: var(--text-main);
+}
+
+/* Blog article blockquote fix */
+body.dark-mode.blog-detail-body .blog-article blockquote {
+  border-left-color: var(--primary);
+  background: rgba(255 255 255 / 0.05);
+  color: var(--text-sub);
+}
+
+/* Comments section */
+body.dark-mode.blog-detail-body .comments-section {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  color: var(--text-main);
+}
+
+/* Comment cards */
+body.dark-mode.blog-detail-body .comment-card {
+  background: var(--light-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+/* Form textarea and button in comments */
+body.dark-mode.blog-detail-body textarea.form-control {
+  background: var(--light-bg);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+body.dark-mode.blog-detail-body button.btn-gradient {
+  background: linear-gradient(270deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+}
+body.dark-mode.blog-detail-body button.btn-gradient:hover {
+  background: linear-gradient(270deg, var(--secondary), var(--primary));
+}
+
+/* ==== Input/Search placeholder color fix ==== */
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: var(--text-sub) !important;
+}
+
+/* ==== Dark mode toggle label color === */
+body.dark-mode .darkmode-switch .mode-label {
+  color: var(--text-light) !important;
+}
+
+/* ==== General site text color fix ==== */
+body.dark-mode,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode label,
+body.dark-mode a,
+body.dark-mode li,
+body.dark-mode small {
+  color: var(--text-main) !important;
+}
+body.dark-mode .blog-content-block {
+  background-color: #2a2a2a !important;  /* nice dark grey */
+  color: var(--text-main) !important;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+body.dark-mode .navbar-search button {
+  background-color: black !important;
+  color: white !important;
+  border: none !important;
+}
+
+body.dark-mode .navbar-search button:hover {
+  background-color: #222 !important;
+  color: white !important;
+}
+body.dark-mode .policy-section {
+  background-color: #2a2a2a; /* dark gray */
+  padding: 1rem;
+  border-radius: var(--radius);
+  color: var(--text-main);
+}
+body.dark-mode .policy-section h4 {
+  color: var(--primary);
+}
+
+body.dark-mode .policy-section ul li {
+  color: var(--text-main);
+}
+
+/* Textarea and live preview backgrounds and text */
+body.dark-mode textarea.form-control,
+body.dark-mode #preview,
+body.dark-mode #contentMarkdown,
+body.dark-mode #contentWYSIWYG {
+  background-color: var(--light-bg) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-color) !important;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Placeholders in inputs and textareas */
+body.dark-mode textarea::placeholder,
+body.dark-mode input::placeholder {
+  color: var(--text-sub) !important;
+}
+
+/* Labels and mode toggle text */
+body.dark-mode label,
+body.dark-mode .mode-option {
+  color: var(--text-main);
+}
+
+/* Active mode toggle background and text */
+body.dark-mode .mode-option.active {
+  background-color: var(--primary);
+  color: #fff !important;
+}
+
+/* Buttons using primary and secondary classes in dark mode */
+body.dark-mode .btn-primary,
+body.dark-mode .btn-secondary,
+body.dark-mode .btn.btn-gradient {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border: none;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+body.dark-mode .btn-primary:hover,
+body.dark-mode .btn-secondary:hover,
+body.dark-mode .btn.btn-gradient:hover {
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  color: #fff;
+}
+
+/* Form selects */
+body.dark-mode select.form-select {
+  background-color: var(--light-bg);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+/* File inputs */
+body.dark-mode input[type="file"] {
+  background-color: var(--light-bg);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+/* Scrollbar colors for textarea and preview */
+body.dark-mode textarea::-webkit-scrollbar,
+body.dark-mode #preview::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.dark-mode textarea::-webkit-scrollbar-thumb,
+body.dark-mode #preview::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 4px;
+}
+body.dark-mode .mode-toggle .mode-option {
+  color: black !important;
+  background-color: #f1f1f1 !important;
+}
+
+body.dark-mode .mode-toggle .mode-option.active {
+  background-color: #0d6efd !important; /* You can keep this to highlight active */
+  color: white !important;
+}

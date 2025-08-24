@@ -83,6 +83,45 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
+        /* Dark style only for Recent Activity card */
+.card.shadow-sm.mb-4 {
+  background-color: #121212 !important; /* dark black bg */
+  color: #a0d468 !important;            /* bright green text */
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.85);
+  border: none;
+}
+
+.card.shadow-sm.mb-4 .card-header.bg-white {
+  background-color: #1c1c1c !important; /* darker header */
+  color: #a0d468 !important;
+  border-bottom: 1px solid #3a6027;
+}
+
+.card.shadow-sm.mb-4 .card-body.p-0 {
+  background-color: transparent !important;
+  color: inherit;
+}
+
+.card.shadow-sm.mb-4 ul.list-group.list-group-flush {
+  background-color: transparent !important;
+}
+
+.card.shadow-sm.mb-4 li.list-group-item {
+  background-color: #121212 !important;
+  color: #ffffff !important; /* softer green */
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.card.shadow-sm.mb-4 li.list-group-item:hover {
+  background-color: #2a3a0d !important;  /* darker green hover */
+}
+
+.card.shadow-sm.mb-4 li.list-group-item .text-muted {
+  color: #6f8752 !important;
+}
+
     </style>
 </head>
 
@@ -146,10 +185,10 @@
                 </div>
 
                 <!-- Logs -->
-                <div class="card shadow-sm mb-4">
-                    <div class="card-header bg-white"><i class="fas fa-history me-2"></i> Recent Activity</div>
+                <div class="card shadow-sm mb-4 " style="color: #212529 !important;" >
+                    <div class="card-header bg-white"><i class="fas fa-history me-2" ></i> Recent Activity</div>
                     <div class="card-body p-0">
-                        <ul class="list-group list-group-flush">
+                        <ul class="list-group list-group-flush" >
                             <% logs.forEach(log=> { %>
                                 <li class="list-group-item">
                                     <i class="fas fa-<%= log.icon %> text-muted me-2"></i>
